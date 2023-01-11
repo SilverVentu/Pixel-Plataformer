@@ -10,7 +10,8 @@ namespace CMF
 
 		public string horizontalInputAxis = "Horizontal";
 		public string verticalInputAxis = "Vertical";
-		public KeyCode jumpKey = KeyCode.Joystick1Button0;
+		public KeyCode jumpKey = KeyCode.Joystick1Button1;
+		public Animator animator;
 
 		//If this is enabled, Unity's internal input smoothing is bypassed;
 		public bool useRawInput = true;
@@ -23,14 +24,18 @@ namespace CMF
 		{
 			float _horizontalInput;
 
-			if(useRawInput)
+			if (useRawInput)
+			{
 				_horizontalInput = Input.GetAxisRaw(horizontalInputAxis);
+				/*animator.SetFloat("h", _horizontalInput);*/
+			}
 			else
 				_horizontalInput = Input.GetAxis(horizontalInputAxis);
 
 			//Set any input values below threshold to '0';
 			if(Mathf.Abs(_horizontalInput) < deadZoneThreshold)
 				_horizontalInput = 0f;
+			    animator.SetFloat("h", _horizontalInput);
 
 			return _horizontalInput;
 		}
@@ -39,14 +44,18 @@ namespace CMF
 		{
 			float _verticalInput;
 
-			if(useRawInput)
+			if (useRawInput)
+			{
 				_verticalInput = Input.GetAxisRaw(verticalInputAxis);
+				animator.SetFloat("v", _verticalInput);
+			}
 			else
 				_verticalInput = Input.GetAxis(verticalInputAxis);
 
 			//Set any input values below threshold to '0';
 			if(Mathf.Abs(_verticalInput) < deadZoneThreshold)
 				_verticalInput = 0f;
+			    /*animator.SetFloat("v", _verticalInput);*/
 
 			return _verticalInput;
 		}
