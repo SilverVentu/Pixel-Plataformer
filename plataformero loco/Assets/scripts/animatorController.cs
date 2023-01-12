@@ -20,7 +20,5 @@ public class animatorController : MonoBehaviour
 
         animator.SetFloat("v", v);
         animator.SetFloat("h", h);
-
-        Debug.Log(h + "+" + v);
     }
 }
